@@ -1,5 +1,6 @@
 class_name Card
 extends Node2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 signal hovered
 signal hovered_off
@@ -14,3 +15,6 @@ func _on_area_2d_mouse_entered() -> void:
 
 func _on_area_2d_mouse_exited() -> void:
 	hovered_off.emit(self)
+
+func diss():
+	animation_player.play("diss")

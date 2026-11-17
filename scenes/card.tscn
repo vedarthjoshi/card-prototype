@@ -1,8 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4xe8watbb2cr"]
+[gd_scene load_steps=12 format=3 uid="uid://b4xe8watbb2cr"]
 
 [ext_resource type="Script" uid="uid://db2noav4ws7g" path="res://scripts/card.gd" id="1_6u4wf"]
 [ext_resource type="Texture2D" uid="uid://bsvcqyp3gm16v" path="res://assets/Knight_card.png" id="1_d81rb"]
 [ext_resource type="Texture2D" uid="uid://bpvmjhmjtkp2i" path="res://assets/Deck.png" id="2_ktuci"]
+[ext_resource type="Shader" uid="uid://bu8yutvg84gi2" path="res://shaders/lightning_discharge.gdshader" id="3_kg30u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kg30u"]
+shader = ExtResource("3_kg30u")
+shader_parameter/progress = 0.0
+shader_parameter/time = 0.0
+shader_parameter/electricity_strength = 1.0
+shader_parameter/lightning_color = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d81rb"]
 size = Vector2(22, 34)
@@ -162,23 +170,54 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CardImg:material:shader_parameter/progress")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_sy11y"]
+resource_name = "diss"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardImg:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sy11y"]
 _data = {
 &"RESET": SubResource("Animation_kg30u"),
-&"card_flip": SubResource("Animation_ktuci")
+&"card_flip": SubResource("Animation_ktuci"),
+&"diss": SubResource("Animation_sy11y")
 }
 
 [node name="Card" type="Node2D"]
 script = ExtResource("1_6u4wf")
 
 [node name="CardBackImage" type="Sprite2D" parent="."]
+visible = false
 z_index = 1
 scale = Vector2(0.12222222, 0.1283019)
 texture = ExtResource("2_ktuci")
 
-[node name="CardImg" type="Node2D" parent="."]
+[node name="CardImg" type="CanvasGroup" parent="."]
 z_index = -1
+material = SubResource("ShaderMaterial_kg30u")
 
 [node name="ColorRect2" type="ColorRect" parent="CardImg"]
 offset_left = -11.0
@@ -203,6 +242,7 @@ texture = ExtResource("1_d81rb")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 shape = SubResource("RectangleShape2D_d81rb")
 
 [node name="Attack" type="RichTextLabel" parent="."]
