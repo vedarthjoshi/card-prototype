@@ -1,15 +1,186 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4xe8watbb2cr"]
+[gd_scene load_steps=9 format=3 uid="uid://b4xe8watbb2cr"]
 
 [ext_resource type="Script" uid="uid://db2noav4ws7g" path="res://scripts/card.gd" id="1_6u4wf"]
-[ext_resource type="Texture2D" uid="uid://bsvcqyp3gm16v" path="res://assets/knight.png" id="1_d81rb"]
+[ext_resource type="Texture2D" uid="uid://bsvcqyp3gm16v" path="res://assets/Knight_card.png" id="1_d81rb"]
+[ext_resource type="Texture2D" uid="uid://bpvmjhmjtkp2i" path="res://assets/Deck.png" id="2_ktuci"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d81rb"]
 size = Vector2(22, 34)
 
+[sub_resource type="SystemFont" id="SystemFont_6u4wf"]
+font_names = PackedStringArray("Alagard")
+subpixel_positioning = 0
+
+[sub_resource type="Animation" id="Animation_ktuci"]
+resource_name = "card_flip"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardImg:z_index")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [-1, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CardBackImage:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, -1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CardBackImage:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.12222222, 0.1283019), Vector2(0.01, 0.128), Vector2(0.122, 0.128)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CardImg:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.1, 1), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Health:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.14999999, 0.19999999),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Attack:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.14999999, 0.19999999),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kg30u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardImg:z_index")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CardBackImage:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CardBackImage:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.12222222, 0.1283019)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CardImg:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Health:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Attack:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sy11y"]
+_data = {
+&"RESET": SubResource("Animation_kg30u"),
+&"card_flip": SubResource("Animation_ktuci")
+}
+
 [node name="Card" type="Node2D"]
 script = ExtResource("1_6u4wf")
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="CardBackImage" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(0.12222222, 0.1283019)
+texture = ExtResource("2_ktuci")
+
+[node name="CardImg" type="Node2D" parent="."]
+z_index = -1
+
+[node name="ColorRect2" type="ColorRect" parent="CardImg"]
 offset_left = -11.0
 offset_top = -17.0
 offset_right = 11.0
@@ -17,7 +188,7 @@ offset_bottom = 17.0
 mouse_filter = 2
 color = Color(0.6303226, 0.5629417, 0.4959814, 1)
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="CardImg"]
 offset_left = -10.0
 offset_top = -16.0
 offset_right = 10.0
@@ -25,13 +196,55 @@ offset_bottom = 16.0
 mouse_filter = 2
 color = Color(0.30616558, 0.26381427, 0.21939647, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CardImage" type="Sprite2D" parent="CardImg"]
+scale = Vector2(0.6666667, 0.66666675)
 texture = ExtResource("1_d81rb")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_d81rb")
+
+[node name="Attack" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+offset_left = -19.0
+offset_top = -4.0
+offset_right = 5.0
+offset_bottom = 32.0
+theme_override_fonts/normal_font = SubResource("SystemFont_6u4wf")
+theme_override_font_sizes/normal_font_size = 5
+theme_override_font_sizes/bold_font_size = 1
+theme_override_font_sizes/bold_italics_font_size = 1
+theme_override_font_sizes/italics_font_size = 1
+theme_override_font_sizes/mono_font_size = 1
+bbcode_enabled = true
+text = "[center]1[/center]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Health" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 20.0
+offset_bottom = 32.0
+theme_override_fonts/normal_font = SubResource("SystemFont_6u4wf")
+theme_override_font_sizes/normal_font_size = 5
+theme_override_font_sizes/bold_font_size = 1
+theme_override_font_sizes/bold_italics_font_size = 1
+theme_override_font_sizes/italics_font_size = 1
+theme_override_font_sizes/mono_font_size = 1
+bbcode_enabled = true
+text = "[center]1[/center]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sy11y")
+}
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

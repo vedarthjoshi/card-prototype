@@ -3,7 +3,7 @@ extends Node2D
 
 const COLLSION_MASK_CARD = 1
 const COLLSION_MASK_CARD_SLOT = 2
-const DEFUALT_CARD_SPEED = 0.5
+const DEFUALT_CARD_SPEED = 0.2
 
 var card_being_dragged : Node2D
 var screen_size

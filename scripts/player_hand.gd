@@ -2,7 +2,7 @@ class_name PlayerHand
 extends Node2D
 
 #@export var HAND_COUNT = 8
-const DEFAULT_CARD_SPEED = 0.5
+const DEFAULT_CARD_SPEED = 0.2
 
 
 #const later
